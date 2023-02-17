@@ -1,6 +1,12 @@
+@font-face {
+    font-family: raleway;
+    src: url(/fonts/Raleway-VariableFont_wght.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
+    font-family: raleway;
 }
 
 #bookshelf {
@@ -9,12 +15,13 @@
 }
 
 h1 {
-    padding: 2rem;
+    padding-top: 3rem;
+    align-items: start;
 }
 
 li {
-    background-color: lightcyan;
     border-radius: 30px;
+    border: 1px solid black;
     list-style: none;
     margin: 1rem;
     padding: 1rem;
@@ -22,15 +29,75 @@ li {
 }
 
 button {
-    background-color: lightgreen;
+    background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
     border-radius: 30px;
+    border: 1px solid black;
     list-style: none;
     margin: 1rem 5rem;
     padding: 1rem;
+    /*color: #ffff;*/
+    font-weight: bold;
+}
+
+button:hover {
+    color: white;
 }
 
 #container {
     display: grid;
     align-items: center;
     justify-content: center;
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    border: 1px solid black;
+    width: 100%;
+    height: 100vh;
+}
+
+.form-container {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.show-form {
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.form-content {
+    display: grid;
+    gap: 1rem;
+    border-radius: 19px;
+    border: 1px solid black;
+    padding: 1rem;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+    width: 30%;
+}
+
+legend {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    color: white;
+    font-weight: bold;
+}
+
+.column-item {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    color: white;
+    font-weight: bold;
+}
+
+.item-space {
+    width: 50%;
 }
