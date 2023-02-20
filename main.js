@@ -20,21 +20,83 @@ closeForm.addEventListener('click', (e) => {
 addBook.addEventListener('click', (e) => {
   e.preventDefault();
   
-  let bookTitle = document.querySelector('#book_title').value;
-
+  let book = document.querySelector('#book_title').value;
+  let div = document.createElement("div");
   let li = document.createElement("li");
-  li.innerText = bookTitle;
-  bookshelf.appendChild(li);
+  let deleteBttn = document.createElement("button");
+  let readBttn = document.createElement("button");
+
+  div.setAttribute('id', myBooks2022.indexOf(book));
+  div.classList.add("book-container");
+  li.innerText = book;
+  bookshelf.appendChild(div);
+  div.appendChild(li)
+  div.appendChild(deleteBttn)
+  div.appendChild(readBttn)
+
+  deleteBttn.innerText = "borrar";
+  readBttn.innerText = "leído";
+  readBttn.classList.add("pendiente");
+
+  deleteBttn.addEventListener('click', () => {
+    myBooks2022.splice(myBooks2022.indexOf(book),1);
+    bookshelf.replaceChildren();
+    bookRender();
+  })
+
+  readBttn.addEventListener('click', () => {
+    readBttn.classList.remove("pendiente");
+    readBttn.classList.add("terminado");
+  })
+
+  readBttn.addEventListener('dblclik', () => {
+    readBttn.classList.remove("terminado");
+    readBttn.classList.add("pendiente");
+  })
+
+  myBooks2022.push(book)
 
   form.classList.remove('show-form');
 });
 
+function bookRender() {
+  myBooks2022.forEach((book) => {
 
-myBooks2022.forEach((book) => {
-  let li = document.createElement("li");
-  li.innerText = book;
-  bookshelf.appendChild(li);
-});
+    let div = document.createElement("div");
+    let li = document.createElement("li");
+    let deleteBttn = document.createElement("button");
+    let readBttn = document.createElement("button");
+  
+    div.setAttribute('id', myBooks2022.indexOf(book));
+    div.classList.add("book-container");
+    deleteBttn.innerText = "borrar";
+    readBttn.innerText = "leído";
+    li.innerText = book;
+    readBttn.classList.add("pendiente");
+  
+    bookshelf.appendChild(div);
+    div.appendChild(li)
+    div.appendChild(deleteBttn)
+    div.appendChild(readBttn)
+  
+    deleteBttn.addEventListener('click', () => {
+      myBooks2022.splice(myBooks2022.indexOf(book),1);
+      bookshelf.replaceChildren();
+      bookRender();
+    })
+
+    readBttn.addEventListener('click', () => {
+      readBttn.classList.remove("pendiente");
+      readBttn.classList.add("terminado");
+    })
+
+    readBttn.addEventListener('dblclik', () => {
+      readBttn.classList.remove("terminado");
+      readBttn.classList.add("pendiente");
+    })
+  
+  });
+};
 
 // constructor
 function Book (title, author, read, language) {
@@ -51,12 +113,13 @@ function addBookToLibrary () {
   // do stuff here
 }
 
-// mostrar el array en la consola
-/*
-let i = 0;
+function showArray(myBooks2022) {
+  let i = 0;
 
-while (i < myBooks2022.length) {
-  console.log(myLibrary2022[i]);
-  i++;
+  while (i < myBooks2022.length) {
+    console.log(myBooks2022[i]);
+    i++;
+  }
 }
-*/
+
+bookRender();
